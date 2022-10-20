@@ -1,0 +1,52 @@
+---
+# Fill in vars.yml before running
+
+# Post-provisioning VM
+- name: "Provision Enviorment"
+  hosts: all
+  become: true
+  vars_files:
+    - vars/vars.yml
+  tasks:
+
+  - name: Collect Server IP
+    debug:
+      msg: "{{ ansible_ssh_host }}"
+
+  - name: Install Required Packages
+    when: deploy_packages == true
+    include: tasks/packages.yml
+
+  - name: Install Docker from official signed repo
+    when: deploy_packages == true
+    include: tasks/docker.yml
+    
+#  Provision Docker Containers om server1
+
+- name: "Provision Enviorment"
+  hosts: server1
+  become_user: root
+  become: true
+  vars_files:
+    - vars/vars.yml
+  tasks:
+
+  - name: Collect Server IP
+    debug:
+      msg: "{{ ansible_ssh_host }}"
+
+  - name: Install Containers
+    when: deploy_containers == true
+    include: tasks/containers_1.yml
+
+# Lock Down SSH 
+  # !! preferablly this is the last task, after this task SSH ports will change to 2002 and key auth forced
+- name: "Lock Down SSH"
+  hosts: all
+  become: true
+  vars_files:
+    - vars/vars.yml
+  tasks:
+  - name: Setup SSH security
+    when: deploy_ssh_key == true
+    include: tasks/ssh_security.yml
