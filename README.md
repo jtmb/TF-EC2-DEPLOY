@@ -6,9 +6,9 @@ Update Vars files before running.
 
 # BEFORE YOU RUN ANYTHING, UPDATE VARS:
 
-Terraform vars are located here: TF-EC2-DEPLOY/blob/main/EC2/vars.tfvars
+Terraform vars are located here: TF-EC2-DEPLOY/EC2/main/EC2/vars.tfvars
 
-Ansible Vars are located here:  TF-EC2-DEPLOY/blob/main/post-provisioning/vars/vars.yml
+Ansible Vars are located here:  TF-EC2-DEPLOY/post-provisioning/main/post-provisioning/vars/vars.yml
 
 
 
