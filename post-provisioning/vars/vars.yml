@@ -9,7 +9,7 @@
 repo_name: "TF-EC2-DEPLOY"   #in the event your fork the repo and change the name, update repo name here
 homedir: "/home/{{ssh_user}}"   # Sets home dir to your SSH user, don;t change this unless you know what you are doing.
 ssh_user: "ubuntu"   # SSH user name
-ssh_port: "22"   # IF running play on server with different SSH port than default 22 or IF running second time - change port here
+ssh_port: "2002"   # IF running play on server with different SSH port than default 22 or IF running second time - change port here
 target_server_ip: "54.85.64.133"   # Address of server you want to target (provision) with the playbook
 private_server_ip: "172.31.80.87"
 ssh_cert: "/home/brajam/.ssh/id_rsa"    #Point to private file used to connect to EC2 instace
