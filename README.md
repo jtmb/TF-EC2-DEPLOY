@@ -4,6 +4,8 @@ This playbook aims to automate linux debian vm or machine provisioning with chan
 
 Update Vars files before running.
 
+# BEFORE YOU RUN ANYTHING, UPDATE VARS:
+
 Terraform vars are located here: TF-EC2-DEPLOY/blob/main/EC2/vars.tfvars
 
 Ansible Vars are located here:  TF-EC2-DEPLOY/blob/main/post-provisioning/vars/vars.yml
