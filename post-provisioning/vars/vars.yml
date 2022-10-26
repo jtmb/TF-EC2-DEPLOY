@@ -8,13 +8,14 @@
 # Linux Vars (mandatory)
 repo_name: "TF-EC2-DEPLOY"   #in the event your fork the repo and change the name, update repo name here
 homedir: "/home/{{ssh_user}}"   # Sets home dir to your SSH user, don;t change this unless you know what you are doing.
-ssh_user: "ubuntu"   # SSH user name
-ssh_port: "22"   # IF running play on server with different SSH port than default 22 or IF running second time - change port here
-target_server_ip: "54.85.64.133"   # Address of server you want to target (provision) with the playbook
-private_server_ip: "172.31.80.87"
-ssh_cert: "/home/brajam/.ssh/id_rsa"    #Point to private file used to connect to EC2 instace
+ssh_user: "{{ssh_user_secret}}"   # SSH user name
+ssh_port: "{{ssh_port_secret}}"   # IF running play on server with different SSH port than default 22 or IF running second time - change port here
+target_server_ip: "{{ target_server_ip_secret }}"   # Address of server you want to target (provision) with the playbook
+private_server_ip: "{{ private_server_ip_secret }}"
+ssh_cert: "{{ssh_cert_secret}}"    #Point to private file used to connect to EC2 instace
 
 # Debug Vars
 deploy_containers: true   # leave true to deploy container workload, flase to skip container workload.
 deploy_packages: true
 deploy_ssh_key: true
+update_reboot: true

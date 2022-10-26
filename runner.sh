@@ -46,4 +46,5 @@ echo
 echo Post Provision tasks with Ansible has kicked off
 echo 
 echo -------------------------------
-cd .. && cd post-provisioning && ansible-playbook -i inventory.ini main.yml
+cd .. && cd post-provisioning && ANSIBLE_CONFIG=./ansible.cfg \
+sudo ansible-playbook -i inventory.ini main.yml --ask-vault-pass

@@ -3,10 +3,12 @@
 
 # Post-provisioning VM
 - name: "Provision Enviorment"
+  strategy: linear
   hosts: all
   become: true
   vars_files:
     - vars/vars.yml
+    - vars/vault.yml
   tasks:
 
   - name: Collect Server IP
@@ -24,11 +26,13 @@
 #  Provision Docker Containers om server1
 
 - name: "Provision Enviorment"
+  strategy: linear
   hosts: server1
   become_user: root
   become: true
   vars_files:
     - vars/vars.yml
+    - vars/vault.yml
   tasks:
 
   - name: Collect Server IP
@@ -42,11 +46,28 @@
 # Lock Down SSH 
   # !! preferablly this is the last task, after this task SSH ports will change to 2002 and key auth forced
 - name: "Lock Down SSH"
+  strategy: linear
   hosts: all
   become: true
   vars_files:
     - vars/vars.yml
+    - vars/vault.yml
+    - vars/vault.yml
   tasks:
   - name: Setup SSH security
     when: deploy_ssh_key == true
     include: tasks/ssh_security.yml
+
+
+- name: "Update and Reboot"
+  strategy: linear
+  hosts: all
+  become: true
+  vars_files:
+    - vars/vars.yml
+    - vars/vault.yml
+    - vars/vault.yml
+  tasks:
+  - name: Update and Reboot
+    when: update_reboot == true
+    include: tasks/update_reboot.yml

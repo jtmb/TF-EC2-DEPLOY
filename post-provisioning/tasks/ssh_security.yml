@@ -9,8 +9,7 @@
 
 - name: Copy a "sshd_config" file from repo to the remote machine
   copy:
-    # src: "{{homedir}}/repos/{{repo_name}}/post-provisioning/defaults/sshd_config"
-    src: "/home/brajam/repos/TF-EC2-DEPLOY/post-provisioning/defaults/sshd_config"
+    src: "./defaults/sshd_config"
     dest: "/etc/ssh/sshd_config"
 
 - name: "Restart SSH Service"

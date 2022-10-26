@@ -1,0 +1,21 @@
+
+# Post-provisioning VM
+- name: Gather Facts"
+  strategy: linear
+  hosts: localhost
+  vars_files:
+    - post-provisioning/vars/vars.yml
+    - post-provisioning/vars/vault.yml
+  tasks:
+
+  - name: Collect Server IP
+    debug:
+      msg: "{{ ansible_ssh_host }}"
+  
+  - name: get the username running the deploy
+    become: false
+    shell: "whoami"
+    register: username_on_the_host
+
+  - debug: 
+      msg: "{{ username_on_the_host.stdout }}"
