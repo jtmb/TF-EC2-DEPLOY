@@ -1,0 +1,16 @@
+# Post-provisioning VM
+- name: "Provision Enviorment"
+  strategy: linear
+  hosts: all
+  become: true
+  vars_files:
+    - vars/vars.yml
+    - vars/vault.yml
+  tasks:
+
+  - name: Collect Server IP
+    debug:
+      msg: "{{ ansible_ssh_host }}"
+
+  - name: Install Required Packages
+    include: tasks/webservers.yml
