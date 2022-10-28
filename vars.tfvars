@@ -6,7 +6,7 @@
 
 # Your AWS credentials file location
   # See here for more info: https://docs.aws.amazon.com/sdk-for-php/v3/developer-guide/guide_credentials_profiles.html
-credentials_file = ["/home/brajam/.secrets/credentials"]
+credentials_file = ["/var/jenkins_home/.secrets/credentials"]
 
 # Update server tags, these won;t do anything really except give your server tags to identify it by.
 tags = {
