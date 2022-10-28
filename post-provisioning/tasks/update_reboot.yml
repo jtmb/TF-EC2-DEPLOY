@@ -1,9 +1,6 @@
-- name: Remove apt lock file
-  file:
-    state: absent
-    path: "/var/lib/dpkg/lock-frontend"
-  become: true
-  tags: apt
+- name: Reboot a slow machine that might have lots of updates to apply
+  ansible.builtin.reboot:
+    reboot_timeout: 3600
 
 - name: "update"
   shell: "apt-get update && \
@@ -11,7 +8,3 @@
           apt-get dist-upgrade -y && \
           apt-get autoremove -y && \
           apt-get autoclean -y"
-
-- name: Reboot a slow machine that might have lots of updates to apply
-  ansible.builtin.reboot:
-    reboot_timeout: 3600
