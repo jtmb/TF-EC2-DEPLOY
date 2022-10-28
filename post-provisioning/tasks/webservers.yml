@@ -62,7 +62,7 @@
 
 # Provision Websites
 
-- name: Restart lucinda.branconet.com
+- name: Clone lucinda.branconet.com
   tags:
     - lucinda.branconet.com
   ansible.builtin.git:
@@ -70,7 +70,7 @@
     dest: '{{homedir}}/container-program-files/ws-lucinda.branconet.com'
     version: master
 
-- name: Restart santos.branconet.com
+- name: Clone santos.branconet.com
   tags:
     - santos.branconet.com
   ansible.builtin.git:
@@ -78,7 +78,7 @@
     dest: '{{homedir}}/container-program-files/ws-santos.branconet.com'
     version: master
 
-- name: Restart aplb.branconet.com
+- name: Clone aplb.branconet.com
   tags:
     - aplb.branconet.com
   ansible.builtin.git:
@@ -86,7 +86,7 @@
     dest: '{{homedir}}/container-program-files/ws-aplb.branconet.com'
     version: master
 
-- name: Restart dev.branconet.com
+- name: Clone dev.branconet.com
   tags:
     - dev.branconet.com
   ansible.builtin.git:
