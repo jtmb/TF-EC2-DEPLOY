@@ -19,3 +19,4 @@ deploy_containers: true   # leave true to deploy container workload, flase to sk
 deploy_packages: true
 deploy_ssh_key: true
 update_reboot: true
+deploy_webservers: true
