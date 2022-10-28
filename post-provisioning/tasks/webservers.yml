@@ -60,6 +60,21 @@
     volumes:
       - '{{homedir}}/container-program-files/ws-dev.branconet.com:/usr/share/nginx/html'
 
+- name: branconet.com
+  tags:
+    - branconet.com
+  docker_container:
+    name: "ws-branconet.com"
+    image: "nginx"
+    pull: yes
+    state: started
+    restart: yes
+    restart_policy: unless-stopped
+    ports: 
+      - "{{ private_server_ip }}:8084:80"
+    volumes:
+      - '{{homedir}}/container-program-files/ws-branconet.com:/usr/share/nginx/html'
+
 # Provision Websites
 
 - name: Clone lucinda.branconet.com
@@ -94,6 +109,14 @@
     dest: '{{homedir}}/container-program-files/ws-dev.branconet.com'
     version: main
 
+- name: Clone branconet.com
+  tags:
+    - branconet.com
+  ansible.builtin.git:
+    repo: https://github.com/jtmb/branconet.git
+    dest: '{{homedir}}/container-program-files/ws-branconet.com'
+    version: master
+
 # Restart Websites
 
 - name: Restart lucinda.branconet.com
@@ -115,3 +138,8 @@
   tags:
     - dev.branconet.com
   shell: docker restart ws-dev.branconet.com
+
+- name: Restart branconet.com
+  tags:
+    - branconet.com
+  shell: docker restart ws-branconet.com
