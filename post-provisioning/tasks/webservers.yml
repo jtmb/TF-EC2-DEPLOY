@@ -113,7 +113,7 @@
   tags:
     - branconet.com
   ansible.builtin.git:
-    repo: https://github.com/jtmb/branconet.git
+    repo: https://github.com/jtmb/branconet.com.git
     dest: '{{homedir}}/container-program-files/ws-branconet.com'
     version: master
 
