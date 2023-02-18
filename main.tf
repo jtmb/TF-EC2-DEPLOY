@@ -3,6 +3,7 @@ provider "aws" {
   shared_credentials_files = var.credentials_file
 }
 
+# Start VM provisioning
 data "aws_ami" "ubuntu" {
   most_recent = true
 
@@ -31,3 +32,5 @@ resource "aws_key_pair" "Login" {
   key_name   = "deployer-key"
   public_key = var.aws_key_pair
 }
+
+# End VM provisioning
