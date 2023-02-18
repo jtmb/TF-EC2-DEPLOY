@@ -20,7 +20,7 @@ resource "aws_security_group" "sec-grp" {
     from_port   = 2002
     to_port     = 2002
     protocol    = "tcp"
-    cidr_blocks = ["38.88.108.55/32"]
+    cidr_blocks = ["66.23.12.137/32"]
   }
 
   ingress {
@@ -42,20 +42,20 @@ ingress {
     from_port   = 81
     to_port     = 81
     protocol    = "tcp"
-    cidr_blocks = ["38.88.108.55/32"]
+    cidr_blocks = ["66.23.12.137/32"]
   }
 
 ingress {
     from_port   = 9091
     to_port     = 9091
     protocol    = "tcp"
-    cidr_blocks = ["38.88.108.55/32"]
+    cidr_blocks = ["66.23.12.137/32"]
   }
 
 ingress {
     from_port   = 8093
     to_port     = 8093
     protocol    = "tcp"
-    cidr_blocks = ["38.88.108.55/32"]
+    cidr_blocks = ["66.23.12.137/32"]
   }
 }

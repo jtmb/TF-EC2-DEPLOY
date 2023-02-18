@@ -101,14 +101,6 @@
     dest: '{{homedir}}/container-program-files/ws-aplb.branconet.com'
     version: master
 
-- name: Clone dev.branconet.com
-  tags:
-    - dev.branconet.com
-  ansible.builtin.git:
-    repo: https://github.com/jtmb/progress-bar.git
-    dest: '{{homedir}}/container-program-files/ws-dev.branconet.com'
-    version: main
-
 - name: Clone branconet.com
   tags:
     - branconet.com
@@ -116,6 +108,15 @@
     repo: https://github.com/jtmb/branconet.com.git
     dest: '{{homedir}}/container-program-files/ws-branconet.com'
     version: master
+
+- name: Clone converter.branconet.com
+  tags:
+    - converter.branconet.com
+  ansible.builtin.git:
+    repo: https://github.com/jtmb/msg-converter.git
+    dest: '{{homedir}}/container-program-files/msg-converter'
+    version: main
+    force: yes
 
 # Restart Websites
 
@@ -143,3 +144,9 @@
   tags:
     - branconet.com
   shell: docker restart ws-branconet.com
+
+- name: "Create msg-converter app"
+  tags:
+    - converter.branconet.com
+  ignore_errors: true
+  shell: "cd {{homedir}}/container-program-files/msg-converter/web-app && bash runner.sh"

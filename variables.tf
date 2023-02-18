@@ -18,3 +18,11 @@ variable "aws_key_pair" {
   description = "Pub Key to associate with ther server"
   type        = string
 }
+
+output "instance_ips" {
+  value = aws_instance.PRD-WBSRV.*.public_ip
+}
+
+output "private_ips" {
+  value = aws_instance.PRD-WBSRV.*.private_ip
+}

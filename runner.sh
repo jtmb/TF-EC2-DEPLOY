@@ -1,10 +1,12 @@
+key_pair=$(cat ~/.ssh/id_rsa.pub)
+
 echo -------------------------------
 echo
 echo Provisioning EC2 with Terraform
 echo
 echo -------------------------------
-
-cd EC2 && terraform apply -var-file=vars.tfvars
+terraform init
+terraform apply -var-file=vars.tfvars -var "aws_key_pair=$key_pair"
 
 echo
 echo
@@ -46,5 +48,12 @@ echo
 echo Post Provision tasks with Ansible has kicked off
 echo 
 echo -------------------------------
-cd .. && cd post-provisioning && ANSIBLE_CONFIG=./ansible.cfg \
-sudo ansible-playbook -i inventory.ini main.yml --ask-vault-pass
+
+# get vars from aws instance (terraform output)
+aws_instance_pub_ip=$(terraform output -json instance_ips | jq -r '.[0]')
+aws_instance_private_ip=$(terraform output -json private_ips | jq -r '.[0]')
+
+cd post-provisioning && ANSIBLE_CONFIG=./ansible.cfg \
+sudo ansible-playbook -i inventory.ini main.yml --ask-vault-pass --extra-vars "target_server_ip=$aws_instance_pub_ip private_server_ip=$aws_instance_private_ip ssh_port=2002 ssh_cert=$HOME/.ssh/id_rsa"
+
+echo "$aws_instance_pub_ip has been rebooted."
