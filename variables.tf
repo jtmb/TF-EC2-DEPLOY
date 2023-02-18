@@ -3,6 +3,11 @@ variable "credentials_file" {
   type        = set(string)
 }
 
+variable "tfstate_file" {
+  description = "tfstate File Location"
+  type        = set(string)
+}
+
 variable "tags" {
   type = map(string)
   default = {
