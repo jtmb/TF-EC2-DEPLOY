@@ -45,21 +45,6 @@
     volumes:
       - '{{homedir}}/container-program-files/ws-aplb.branconet.com:/usr/share/nginx/html'
 
-- name: dev.branconet.com
-  tags:
-    - dev.branconet.com
-  docker_container:
-    name: "ws-dev.branconet.com"
-    image: "nginx"
-    pull: yes
-    state: started
-    restart: yes
-    restart_policy: unless-stopped
-    ports: 
-      - "{{ private_server_ip }}:8083:80"
-    volumes:
-      - '{{homedir}}/container-program-files/ws-dev.branconet.com:/usr/share/nginx/html'
-
 - name: branconet.com
   tags:
     - branconet.com
