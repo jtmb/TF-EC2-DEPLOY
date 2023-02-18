@@ -54,6 +54,6 @@ aws_instance_pub_ip=$(terraform output -json instance_ips | jq -r '.[0]')
 aws_instance_private_ip=$(terraform output -json private_ips | jq -r '.[0]')
 
 cd post-provisioning && ANSIBLE_CONFIG=./ansible.cfg \
-sudo ansible-playbook -i inventory.ini main.yml --ask-vault-pass --extra-vars "target_server_ip=$aws_instance_pub_ip private_server_ip=$aws_instance_private_ip ssh_port=22 ssh_cert=$HOME/.ssh/id_rsa"
+sudo ansible-playbook -i inventory.ini main.yml --ask-vault-pass --extra-vars "target_server_ip=$aws_instance_pub_ip private_server_ip=$aws_instance_private_ip ssh_port=2002 ssh_cert=$HOME/.ssh/id_rsa"
 
 echo "$aws_instance_pub_ip has been rebooted."
